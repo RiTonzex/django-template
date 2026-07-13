@@ -5,4 +5,3 @@ urlpatterns = [
     path('', views.intex, name='intex'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-]
