@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.env/
+venv/
+env/
+
+# Django build/static files
+staticfiles/
+
+# Local databases (optional: uncomment if you don't want to upload sqlite DB)
+# db.sqlite3
