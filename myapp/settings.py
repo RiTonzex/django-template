@@ -13,25 +13,27 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
-
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env.local
+load_dotenv(dotenv_path=BASE_DIR / '.env.local')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-y_ydn=7yb9)+2lgiqiz!h%#_k^t42ow9c&mj8^1-(5g+m=73w-"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-y_ydn=7yb9)+2lgiqiz!h%#_k^t42ow9c&mj8^1-(5g+m=73w-")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = [".vercel.app", "127.0.0.1", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = ["https://*.vercel.app"]
-
 
 
 # Application definition
