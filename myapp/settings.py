@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +29,9 @@ SECRET_KEY = "django-insecure-y_ydn=7yb9)+2lgiqiz!h%#_k^t42ow9c&mj8^1-(5g+m=73w-
 DEBUG = True
 
 ALLOWED_HOSTS = [".vercel.app", "127.0.0.1", "localhost"]
+
+CSRF_TRUSTED_ORIGINS = ["https://*.vercel.app"]
+
 
 
 # Application definition
@@ -78,10 +83,13 @@ WSGI_APPLICATION = "myapp.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=os.getenv(
+            "DATABASE_URL",
+            "postgresql://neondb_owner:npg_bvyW70UndXgh@ep-square-bread-azf80hxt-pooler.c-3.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+        ),
+        conn_max_age=600,
+    )
 }
 
 
